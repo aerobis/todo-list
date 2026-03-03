@@ -1,0 +1,18 @@
+@font-face{
+    font-family: 'Roboto';
+    src: url('./assets/fonts/Roboto-VariableFont_wdth,wght.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face{
+    font-family: 'SN-Pro';
+    src: url('./assets/fonts/SNPro-VariableFont_wght.ttf') format('truetype');
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    font-size: 18px;
+}
