@@ -10,8 +10,8 @@ export function projectListMaker(container){
     let listSection = document.createElement('div');
     listSection.classList.add("project-list");
 
-    
+
 
     container.appendChild(legendSection);
     container.appendChild(listSection);
-};
+}
