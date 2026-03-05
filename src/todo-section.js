@@ -1,3 +1,5 @@
+import {todoMaker} from "./todo-maker.js";
+
 export function todoListMaker(container){
     let legendSection = document.createElement('div');
     legendSection.classList.add("todo-section-legend-container");
@@ -9,8 +11,6 @@ export function todoListMaker(container){
 
     let todoSection = document.createElement('div');
     todoSection.classList.add("main-content");
-
-    
 
     container.appendChild(legendSection);
 };
