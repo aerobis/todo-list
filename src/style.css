@@ -12,11 +12,23 @@
     font-display: swap;
 }
 
+*{
+    margin: 0;
+    padding: 0;
+}
+
+:root{
+    --primary-color: #EAA915;
+    --secondary-color: #1556EA;
+    --basic-padding: 15px;
+}
+
 body {
     font-family: 'Roboto', Arial, sans-serif;
     font-size: 18px;
     width: 100vw;
     height: 100vh;
+    overflow: hidden;
 }
 
 /*CONTENT CONTAINER*/
@@ -28,4 +40,14 @@ body {
     grid-template-columns: 1fr 4fr;
     grid-template-rows: auto;
     grid-auto-flow: columns;
+}
+
+.project-section{
+    background-color: var(--primary-color);
+    padding: var(--basic-padding);
+}
+
+.todo-section{
+    background-color: var(--secondary-color);
+    padding: var(--basic-padding);
 }
