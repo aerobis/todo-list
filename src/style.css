@@ -42,12 +42,19 @@ body {
     grid-auto-flow: columns;
 }
 
+/*PROJECT SECTION*/
 .project-section{
     background-color: var(--primary-color);
     padding: var(--basic-padding);
 }
 
+
+/*TODO SECTION*/
 .todo-section{
     background-color: var(--secondary-color);
     padding: var(--basic-padding);
+}
+
+.todo-section-legend{
+    text-align: center;
 }
