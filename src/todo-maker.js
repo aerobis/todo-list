@@ -14,11 +14,9 @@ export function todoMaker(title, description, dueDate, priority, status, contain
     // let today = new Date();
     // today.setHours(0,0,0,0);
 
-    let formattedDate = new Date(dueDate).toLocaleDateString();
-
-    // let cardDueDate = document.createElement('p');
-    // cardDueDate.classList.add("todo-card-due-date");
-    // cardDueDate.textContent = formattedDate;
+    let cardDueDate = document.createElement('p');
+    cardDueDate.classList.add('todo-card-due-date');
+    cardDueDate.textContent = new Date(dueDate).toLocaleDateString();
 
     let cardPriority = document.createElement('p');
     cardPriority.classList.add("todo-card-priority");
@@ -29,7 +27,7 @@ export function todoMaker(title, description, dueDate, priority, status, contain
 
     card.appendChild(cardTitle);
     card.appendChild(cardDescription);
-    // card.appendChild(cardDueDate);
+    card.appendChild(cardDueDate);
     card.appendChild(cardPriority);
     card.appendChild(cardStatus);
 
