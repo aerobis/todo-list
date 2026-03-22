@@ -3,6 +3,36 @@
     
     </div>
     <div class="todo-section">
-    
+        <button id="new-todo-btn">New Todo</button>
+        <div id="todo-list"></div>
+
+        <div id="todo-modal">
+            <form action="#" id="todo-form">
+                <h2>CREATE NEW TODO</h2>
+                <label>Title</label>
+                <input type="text" name="title" id="title" required>
+                <label>Description</label>
+                <input type="text" name="description" id="description">
+                <label>Due Date</label>
+                <input type="date" name="dueDate" id="dueDate" required>
+                <label>Priority
+                    <select name="priority">
+                        <option>Urgent</option>
+                        <option>High</option>
+                        <option>Normal</option>
+                        <option>Low</option>
+                    </select>
+                </label>
+                <label>Status
+                    <select name="status">
+                        <option>Completed</option>
+                        <option>Progressed</option>
+                        <option>Incomplete</option>
+                    </select>
+                </label>
+                <button type="submit" id="todo-submit-button" class="form-buttons">Save</button>
+                <button type="button" id="todo-cancel-button" class="form-buttons">Cancel</button>
+            </form>
+        </div>
     </div>
 </div>
