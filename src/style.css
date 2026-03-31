@@ -58,3 +58,8 @@ body {
 .todo-section-legend{
     text-align: center;
 }
+
+/*TODO FORM*/
+#todo-form{
+    display: none;
+}
