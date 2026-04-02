@@ -11,10 +11,10 @@
                 <label>Title</label>
                 <input type="text" name="title" id="title" required>
                 <label>Description</label>
-                <input type="text" name="description" id="description">
+                <textarea name="description" id="description"> </textarea>
                 <label>Due Date</label>
                 <input type="date" name="dueDate" id="dueDate" required>
-                <label>Priority
+                <label>Priority: 
                     <select name="priority">
                         <option>Urgent</option>
                         <option>High</option>
@@ -22,15 +22,17 @@
                         <option>Low</option>
                     </select>
                 </label>
-                <label>Status
+                <label>Status: 
                     <select name="status">
-                        <option>Completed</option>
-                        <option>Progressed</option>
                         <option>Incomplete</option>
+                        <option>Progressed</option>
+                        <option>Completed</option>
                     </select>
                 </label>
-                <button type="submit" id="todo-submit-button" class="form-buttons">Save</button>
-                <button type="button" id="todo-cancel-button" class="form-buttons">Cancel</button>
+                <div class="form-buttons">
+                    <button type="submit" id="todo-submit-button">Save</button>
+                    <button type="button" id="todo-cancel-button">Cancel</button>
+                </div>
             </form>
         </div>
         <button id="new-todo-button">New Todo</button>

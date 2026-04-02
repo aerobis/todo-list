@@ -16,6 +16,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     console.log(newTodoBtn);
 
     newTodoBtn.addEventListener("click", ()=>{
-        todoForm.style.display = "block";
+        todoForm.style.display = "flex";
+    });
+
+    todoCancelBtn.addEventListener("click", ()=>{
+        todoForm.style.display = "none";
     });
 });
