@@ -13,4 +13,12 @@ export function todoListMaker(container){
     todoSection.classList.add("main-content");
 
     container.appendChild(legendSection);
+    container.appendChild(todoSection);
 };
+
+export function addTodoToList(passedTodo){
+    let todoSection = document.querySelector(".main-content");
+    let todo = todoMaker(passedTodo);
+
+    todoSection.appendChild(todo);
+}
