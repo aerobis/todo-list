@@ -22,11 +22,21 @@ export function todoMaker(passedTodo){
     let cardStatus = document.createElement('p');
     cardStatus.textContent = passedTodo.status;
 
+    let editBtn = document.createElement('button');
+    editBtn.classList.add("todo-edit-button");
+    editBtn.textContent = "Edit";
+
+    let deleteBtn = document.createElement('button');
+    deleteBtn.classList.add("todo-delete-button");
+    deleteBtn.textContent = "🗑️";
+
     card.appendChild(cardTitle);
     card.appendChild(cardDescription);
     card.appendChild(cardDueDate);
     card.appendChild(cardPriority);
     card.appendChild(cardStatus);
+    card.appendChild(editBtn);
+    card.appendChild(deleteBtn);
 
     return card;
 };
