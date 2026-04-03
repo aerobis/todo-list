@@ -8,7 +8,12 @@ export function todoMaker(passedTodo){
 
     let cardDescription = document.createElement("p");
     cardDescription.classList.add("todo-card-description");
-    cardDescription.textContent = passedTodo.description;
+    let maxLength = 100;
+    cardDescription.textContent = passedTodo.description.length > maxLength
+        ? passedTodo.description.substring(0, maxLength) + "..." 
+        : passedTodo.description;
+
+    //If description > 100 characters, default to showing 100, if not, show all
 
     let passedDueDate = passedTodo.dueDate;
     let cardDueDate = document.createElement('p');
@@ -17,10 +22,10 @@ export function todoMaker(passedTodo){
 
     let cardPriority = document.createElement('p');
     cardPriority.classList.add("todo-card-priority");
-    cardPriority.textContent = passedTodo.priority;
+    cardPriority.textContent = `Priority: ${passedTodo.priority}`;
 
     let cardStatus = document.createElement('p');
-    cardStatus.textContent = passedTodo.status;
+    cardStatus.textContent = `Status: ${passedTodo.status}`;
 
     let editBtn = document.createElement('button');
     editBtn.classList.add("todo-edit-button");
