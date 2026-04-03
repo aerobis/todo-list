@@ -45,3 +45,7 @@ export function todoMaker(passedTodo){
 
     return card;
 };
+
+//TO DO NEXT
+//STYLE THE CARDS
+//ATTACH EVENT LISTENER TO EDIT BUTTON TO OPEN UP FORM/EXPAND CARD
