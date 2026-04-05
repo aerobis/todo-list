@@ -21,6 +21,7 @@
     --primary-color: #EAA915;
     --secondary-color: #1556EA;
     --basic-padding: 15px;
+    --font-medium: clamp(1rem, 2.5vh, 1.5rem);
 }
 
 body {
@@ -119,7 +120,7 @@ input, #description{
     top: 93%;
     left: 50%;
 
-    font-size: clamp(1rem, 2.5vh, 1.5rem);
+    font-size: var(--font-medium);
     border-radius: 8px;
     border: 0px;
     padding: 8px;
@@ -132,3 +133,52 @@ input, #description{
     cursor: pointer;
     transform: scale(1.1);
 }
+
+/* TODO CARDS*/
+.todo-card{
+    padding: 10px;
+    margin-top: 35px;
+    margin-left: 10px;
+    width: 40vw;
+    height: 15vh;
+    background-color: white;
+    border-radius: 8px;
+
+    transition: transform 0.2s ease;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-auto-flow: column;
+}
+
+.todo-card:hover{
+    transform: scale(1.02);
+}
+
+.todo-card-button-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.todo-card-buttons{
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+    padding: 5px;
+    border-radius: 8px;
+    border: 0.2px solid black;
+    width: 3.5rem;
+    height: 2.5rem;
+    transition: transform 0.2s ease;
+}
+
+.todo-card-buttons:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.delete-button-span{
+    font-size: clamp(0.7rem, 2.5vw, 1rem);
+}
+
