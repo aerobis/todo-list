@@ -41,10 +41,16 @@ export function todoMaker(passedTodo){
     let deleteBtn = document.createElement('button');
     deleteBtn.classList.add("todo-card-buttons");
     deleteBtn.classList.add("todo-delete-button");
-    let deleteBtnSpan = document.createElement('span');
-    deleteBtnSpan.classList.add("delete-button-span");
-    deleteBtnSpan.textContent = "🗑️";
-    deleteBtn.appendChild(deleteBtnSpan);
+    // let deleteBtnSpan = document.createElement('span');
+    // deleteBtnSpan.classList.add("delete-button-span");
+    // deleteBtnSpan.textContent = "🗑️";
+    // deleteBtn.appendChild(deleteBtnSpan);
+    let binIcon = document.createElement('i');
+    binIcon.classList.add("fa-solid");
+    binIcon.classList.add("fa-trash-can");
+    deleteBtn.appendChild(binIcon);
+
+    //<i class="fa-solid fa-trash-can"></i>
 
     // card.appendChild(cardTitle);
     // card.appendChild(cardDescription);
