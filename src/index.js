@@ -6,6 +6,7 @@ import {updateTodoCard} from "./todo-maker.js";
 
 let editMode = false;
 let editingCard = null;
+let modalBackdrop = null;
 
 document.addEventListener("DOMContentLoaded", ()=>{
     let projectContainer = document.querySelector(".project-section");
@@ -17,13 +18,41 @@ document.addEventListener("DOMContentLoaded", ()=>{
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
 
+    
+    function showModal(){
+        modalBackdrop = document.createElement('div');
+        modalBackdrop.className = 'modal-backdrop';
+        Object.assign(modalBackdrop.style, {
+            position: 'fixed',
+            top: '0', left: '0',
+            width: '100vw', height: '100vh',
+            background: 'rgba(0,0,0,0.5)',
+            backdropFilter: 'blur(4px)',
+            zIndex: '999',
+        });
+        document.body.appendChild(modalBackdrop);
+
+        todoForm.style.display = 'flex';
+        todoForm.style.zIndex = '1000';
+    };
+
+    function hideModal(){
+        if(modalBackdrop){
+            modalBackdrop.remove();
+            todoForm.reset();
+            todoForm.style.display = 'none';
+        }
+    };
+
     newTodoBtn.addEventListener("click", ()=>{
-        todoForm.style.display = "flex";
+        // todoForm.style.display = "flex";
+        showModal();
     });
 
     todoCancelBtn.addEventListener("click", ()=>{
-        todoForm.reset();
-        todoForm.style.display = "none";
+        // todoForm.reset();
+        // todoForm.style.display = "none";
+        hideModal();
     });
 
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
@@ -42,7 +71,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             formPriority.value = editingCard.dataset.priority;
             formStatus.value = editingCard.dataset.status;
 
-            todoForm.style.display="flex";
+            // todoForm.style.display="flex";
+            showModal();
         }
     });
 
@@ -65,14 +95,16 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         if(editMode){
             updateTodoCard(editingCard, passedTodo);
-            todoForm.reset();
-            todoForm.style.display="none";
+            // todoForm.reset();
+            // todoForm.style.display="none";
+            hideModal();
             editMode = false;
             editingCard = null;
         }else{
             addTodoToList(passedTodo);
-            todoForm.reset();
-            todoForm.style.display="none";
+            // todoForm.reset();
+            // todoForm.style.display="none";
+            hideModal();
         }
     });
 });
