@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     });
 
     todoCancelBtn.addEventListener("click", ()=>{
+        todoForm.reset();
         todoForm.style.display = "none";
     });
 
