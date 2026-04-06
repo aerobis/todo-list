@@ -178,7 +178,10 @@ input, #description{
     transform: scale(1.1);
 }
 
-.delete-button-span{
-    font-size: clamp(0.7rem, 2.5vw, 1rem);
+.todo-edit-button{
+    background-color: rgb(108, 222, 46);
 }
 
+.todo-delete-button{
+    background-color: red;
+}

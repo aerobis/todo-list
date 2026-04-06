@@ -1,4 +1,4 @@
-export function todoMaker(passedTodo){
+export function createTodoCard(passedTodo){
     let card = document.createElement('div');
     card.classList.add("todo-card");
     
@@ -71,9 +71,16 @@ export function todoMaker(passedTodo){
     card.appendChild(cardInfo);
     card.appendChild(cardButtons);
 
+    card.dataset.title = passedTodo.title;
+    card.dataset.description = passedTodo.description;
+    card.dataset.dueDate = passedTodo.dueDate;
+    card.dataset.priority = passedTodo.priority;
+    card.dataset.status = passedTodo.status;
+
     return card;
 };
 
-//TO DO NEXT
-//STYLE THE CARDS
 //ATTACH EVENT LISTENER TO EDIT BUTTON TO OPEN UP FORM/EXPAND CARD
+export function updateTodoCard(existingCard, updatedData){
+    existingCard.replaceWith(createTodoCard(updatedData));
+};
