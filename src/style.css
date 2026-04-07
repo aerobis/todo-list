@@ -32,6 +32,10 @@ body {
     overflow: hidden;
 }
 
+.main-content{
+    min-height: calc(100vh - 100px);
+}
+
 /*CONTENT CONTAINER*/
 .content-container{
     width: 100%;
@@ -62,11 +66,32 @@ body {
 }
 
 /*TODO FORM*/
+.modal-backdrop{
+    will-change: opacity;
+    animation: fadeIn 0.2s ease;
+    /* position: 'fixed',
+    top: '0', left: '0',
+    width: '100vw', height: '100vh',
+    background: 'rgba(100, 100, 100,0.5)',
+    backdropFilter: 'blur(4px)',
+    zIndex: '999', */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(100, 100, 100, 0.5);
+    z-index: 999;
+    will-change: transform, opacity;
+}
+
+@keyframes fadeIn{from {opacity: 0;}}
+
 #todo-form{
     display: none;
-    position: absolute;
+    position: fixed;
     top: 20%;
-    left: 20%;
+    left: 30%;
     width: 50vw;
     height: 50vh;
 
@@ -76,6 +101,8 @@ body {
     padding: 15px;
     flex-direction: column;
     gap: 15px;
+    z-index: 1000;
+    will-change: transform;
 }
 
 #todo-form > h2{
@@ -83,8 +110,8 @@ body {
 }
 
 #description{
-    height: 75vh;
-    width: 50vw;
+    height: 25rem;
+    width: 100%;
 }
 
 input, #description{
@@ -106,11 +133,11 @@ input, #description{
     padding: 8px;
     width: 15vw;
 
-    transition: transform 0.2s ease;
+    /* transition: transform 0.2s ease; */
 }
 
 .form-buttons > button:hover{
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
     cursor: pointer;
 }
 
@@ -136,6 +163,7 @@ input, #description{
 
 /* TODO CARDS*/
 .todo-card{
+    min-height: 15vh;
     padding: 10px;
     margin-top: 35px;
     margin-left: 10px;

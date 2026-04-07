@@ -22,23 +22,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
     function showModal(){
         modalBackdrop = document.createElement('div');
         modalBackdrop.className = 'modal-backdrop';
-        Object.assign(modalBackdrop.style, {
-            position: 'fixed',
-            top: '0', left: '0',
-            width: '100vw', height: '100vh',
-            background: 'rgba(0,0,0,0.5)',
-            backdropFilter: 'blur(4px)',
-            zIndex: '999',
-        });
+        // Object.assign(modalBackdrop.style, {
+        //     position: 'fixed',
+        //     top: '0', left: '0',
+        //     width: '100vw', height: '100vh',
+        //     background: 'rgba(100, 100, 100,0.5)',
+        //     backdropFilter: 'blur(4px)',
+        //     zIndex: '999',
+        // });
         document.body.appendChild(modalBackdrop);
 
         todoForm.style.display = 'flex';
-        todoForm.style.zIndex = '1000';
+        // todoForm.style.zIndex = '1000';
     };
 
     function hideModal(){
         if(modalBackdrop){
             modalBackdrop.remove();
+            modalBackdrop = null;
             todoForm.reset();
             todoForm.style.display = 'none';
         }
@@ -59,12 +60,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
         if(event.target.matches('.todo-edit-button')){
             editingCard = event.target.closest(".todo-card");
             editMode = true;
+            let formHeading = document.querySelector("#form-heading")
             let formTitle = document.querySelector("#title");
             let formDescription = document.querySelector("#description");
             let formDueDate = document.querySelector("#due-date");
             let formPriority = document.querySelector("#priority");
             let formStatus = document.querySelector("#status");
             
+            formHeading.textContent = "EDIT TODO CARD";
             formTitle.value = editingCard.dataset.title;
             formDescription.value = editingCard.dataset.description;
             formDueDate.value = editingCard.dataset.dueDate;
