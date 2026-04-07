@@ -79,6 +79,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     });
 
+    document.querySelector(".todo-section").addEventListener("click", (event)=>{
+        if(event.target.matches('.todo-delete-button')){
+            event.target.closest(".todo-card").remove()
+        }
+    });
+
     todoForm.addEventListener("submit", (e)=>{
         e.preventDefault();
 
