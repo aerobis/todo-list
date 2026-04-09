@@ -3,6 +3,7 @@ import {projectListMaker} from "./project-section.js";
 import {todoListMaker} from "./todo-section.js";
 import {addTodoToList} from "./todo-section.js";
 import {updateTodoCard} from "./todo-maker.js";
+import {createProject} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
@@ -17,6 +18,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
+    createProject("default");
 
     
     function showModal(){

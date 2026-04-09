@@ -1,25 +1,39 @@
 let projects=[];
-let currentProject = null;
+let activeProjectId = 'default';
 
-function createProject(projectData){
-    let project = document.createElement("div");
-    project.classList.add("projects");
+export function createProject(projectTitle){
+    let container = document.querySelector(".project-list");
 
-    let projectTitle = projectData.title;
+    let projectCard = document.createElement("div");
+    projectCard.classList.add("project-card");
 
-    let projectCardTitle = document.createElement("h1");
-    projectCardTitle.classList.add("project-title");
+    let projectCardTitle = document.createElement("h3");
+    projectCardTitle.classList.add("project-card-title");
     projectCardTitle.textContent = projectTitle;
 
-    let passedDueDate = projectData.dueDate;
-    let projectId = new Date(passedDueDate).toLocaleDateString();
+    let projectId = Date.now().toString();
 
-    project.classList.add(`project-${projectId}`);
+    projectCard.classList.add(`project-${projectId}`);
 
     let projectObject = {
         title: projectTitle,
-        id: projectId
+        id: projectId,
+        todos: []
     };
 
     projects.push(projectObject);
+
+    projectCard.appendChild(projectCardTitle);
+    container.appendChild(projectCard);
 };
+
+function setActiveProject(id){
+    activeProjectId = id;
+}
+
+
+
+
+
+
+

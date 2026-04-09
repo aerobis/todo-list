@@ -213,3 +213,24 @@ input, #description{
 .todo-delete-button{
     background-color: red;
 }
+
+/*PROJECTS*/
+.project-list{
+    display: grid;
+    grid-template-columns: auto;
+    grid-auto-flow: column;
+    margin-top: 35px;
+}
+
+.project-card{
+    background-color: white;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.project-card:hover{
+    cursor: pointer;
+}
