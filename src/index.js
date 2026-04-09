@@ -7,7 +7,8 @@ import {createDefaultProject} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
-let modalBackdrop = null;
+let todoModalBackdrop = null;
+let projectModalBackdrop = null;
 
 document.addEventListener("DOMContentLoaded", ()=>{
     let projectContainer = document.querySelector(".project-section");
@@ -15,15 +16,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
     let todoForm = document.querySelector("#todo-form");
     let newTodoBtn = document.querySelector("#new-todo-button");
     let todoCancelBtn = document.querySelector("#todo-cancel-button");
+    let projectForm = document.querySelector("#project-form");
+    let newProjectBtn = document.querySelector("#new-project-button");
+    let projectCancelBtn = document.querySelector("#project-cancel-button");
 
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
     createDefaultProject();
 
     
-    function showModal(){
-        modalBackdrop = document.createElement('div');
-        modalBackdrop.className = 'modal-backdrop';
+    function showTodoModal(){
+        todoModalBackdrop = document.createElement('div');
+        todoModalBackdrop.className = 'modal-backdrop';
         // Object.assign(modalBackdrop.style, {
         //     position: 'fixed',
         //     top: '0', left: '0',
@@ -32,31 +36,55 @@ document.addEventListener("DOMContentLoaded", ()=>{
         //     backdropFilter: 'blur(4px)',
         //     zIndex: '999',
         // });
-        document.body.appendChild(modalBackdrop);
+        document.body.appendChild(todoModalBackdrop);
 
         todoForm.style.display = 'flex';
         // todoForm.style.zIndex = '1000';
     };
 
-    function hideModal(){
-        if(modalBackdrop){
-            modalBackdrop.remove();
-            modalBackdrop = null;
+    function showProjectModal(){
+        projectModalBackdrop = document.createElement('div');
+        projectModalBackdrop.className = 'modal-backdrop';
+        document.body.appendChild(projectModalBackdrop);
+        projectForm.style.display = 'flex';
+    }
+
+    function hideTodoModal(){
+        if(todoModalBackdrop){
+            todoModalBackdrop.remove();
+            todoModalBackdrop = null;
             todoForm.reset();
             todoForm.style.display = 'none';
         }
     };
 
+    function hideProjectModal(){
+        if(projectModalBackdrop){
+            projectModalBackdrop.remove();
+            projectModalBackdrop = null;
+            projectForm.reset();
+            projectForm.style.display = 'none';
+        }
+    }
+
     newTodoBtn.addEventListener("click", ()=>{
         // todoForm.style.display = "flex";
-        showModal();
+        showTodoModal();
     });
 
     todoCancelBtn.addEventListener("click", ()=>{
         // todoForm.reset();
         // todoForm.style.display = "none";
-        hideModal();
+        hideTodoModal();
     });
+
+    newProjectBtn.addEventListener("click", ()=>{
+        showProjectModal();
+    });
+
+    projectCancelBtn.addEventListener("click", ()=>{
+        hideProjectModal();
+    })
 
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
         if(event.target.matches('.todo-edit-button')){
@@ -77,7 +105,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             formStatus.value = editingCard.dataset.status;
 
             // todoForm.style.display="flex";
-            showModal();
+            showTodoModal();
         }
     });
 
@@ -90,7 +118,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     todoForm.addEventListener("submit", (e)=>{
         e.preventDefault();
 
-        let title = document.querySelector("#title").value;
+        let title = document.querySelector("#todo-title").value;
         let description = document.querySelector("#description").value;
         let dueDate = document.querySelector("#due-date").value;
         let priority = document.querySelector("#priority").value;
@@ -108,14 +136,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
             updateTodoCard(editingCard, passedTodo);
             // todoForm.reset();
             // todoForm.style.display="none";
-            hideModal();
+            hideTodoModal();
             editMode = false;
             editingCard = null;
         }else{
             addTodoToList(passedTodo);
             // todoForm.reset();
             // todoForm.style.display="none";
-            hideModal();
+            hideTodoModal();
         }
     });
 });

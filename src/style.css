@@ -87,7 +87,7 @@ body {
 
 @keyframes fadeIn{from {opacity: 0;}}
 
-#todo-form{
+#todo-form, #project-form{
     display: none;
     position: fixed;
     top: 20%;
@@ -105,7 +105,7 @@ body {
     will-change: transform;
 }
 
-#todo-form > h2{
+#todo-form > h2, #project-form > h2{
     text-align: center;
 }
 
@@ -215,6 +215,30 @@ input, #description{
 }
 
 /*PROJECTS*/
+.project-section{
+    position: relative;
+}
+
+#new-project-button{
+    position: absolute;
+    top: 93%;
+    left: 20%;
+
+    font-size: var(--font-medium);
+    border-radius: 8px;
+    border: 0px;
+    padding: 8px;
+    background-color: var(--secondary-color);
+    color: white;
+    transition: transform 0.2s ease;
+}
+
+#new-project-button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+
 .project-list{
     display: grid;
     grid-template-columns: auto;
