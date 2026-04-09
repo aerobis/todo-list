@@ -1,4 +1,5 @@
 import {createTodoCard} from "./todo-maker.js";
+import {getActiveProject} from "./projects.js";
 
 export function todoListMaker(container){
     let legendSection = document.createElement('div');
@@ -18,6 +19,9 @@ export function todoListMaker(container){
 
 export function addTodoToList(passedTodo){
     let todoSection = document.querySelector(".main-content");
+    let activeProject = getActiveProject();
+    activeProject.todos.push(passedTodo);
+
     let todo = createTodoCard(passedTodo);
 
     todoSection.appendChild(todo);
