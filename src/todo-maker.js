@@ -1,9 +1,7 @@
-import {getActiveProject} from "./projects.js";
-
 export function createTodoCard(passedTodo){
     let card = document.createElement('div');
     card.classList.add("todo-card");
-    
+
     let cardInfo = document.createElement('div');
     cardInfo.classList.add("todo-card-info");
 
@@ -73,6 +71,7 @@ export function createTodoCard(passedTodo){
     card.appendChild(cardInfo);
     card.appendChild(cardButtons);
 
+    card.dataset.id = passedTodo.id;
     card.dataset.title = passedTodo.title;
     card.dataset.description = passedTodo.description;
     card.dataset.dueDate = passedTodo.dueDate;

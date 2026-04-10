@@ -122,7 +122,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
         if(event.target.matches('.todo-delete-button')){
-            event.target.closest(".todo-card").remove()
+            let currentCard = event.target.closest(".todo-card");
+            currentCard.remove();
+            let activeProject = getActiveProject();
+            let todoLength = activeProject.todos.length;
+            for(let i=0; i<todoLength; i++){
+                if(currentCard.dataset.id == activeProject.todos[i].id){
+                    activeProject.todos = activeProject.todos.filter(todo => todo.id !== currentCard.dataset.id); //Remake the array such that every element BUT the one with the id of the card is present
+                }
+            }
         }
     });
 
@@ -137,6 +145,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         let passedTodo = {
             title: title,
+            id: crypto.randomUUID(),
             description: description,
             dueDate: dueDate,
             priority: priority,
