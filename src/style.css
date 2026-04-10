@@ -105,6 +105,10 @@ body {
     will-change: transform;
 }
 
+#project-form{
+    height: 20vh;
+}
+
 #todo-form > h2, #project-form > h2{
     text-align: center;
 }
@@ -241,9 +245,10 @@ input, #description{
 
 .project-list{
     display: grid;
-    grid-template-columns: auto;
-    grid-auto-flow: column;
+    grid-template-rows: auto;
+    grid-auto-flow: row;
     margin-top: 35px;
+    gap: 15px;
 }
 
 .project-card{

@@ -23,8 +23,9 @@ export function createProject(projectTitle){
     displayProjects();
 };
 
-export function displayProjects(){
+function displayProjects(){
     let container = document.querySelector(".project-list");
+    container.innerHTML = "";
     let length = projects.length;
     for(let i=0; i<length; i++){
         let projectTitle = projects[i].title;

@@ -3,6 +3,7 @@ import {projectListMaker} from "./project-section.js";
 import {todoListMaker} from "./todo-section.js";
 import {addTodoToList} from "./todo-section.js";
 import {updateTodoCard} from "./todo-maker.js";
+import {createProject} from "./projects.js";
 import {createDefaultProject} from "./projects.js";
 
 let editMode = false;
@@ -115,8 +116,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     });
 
-    todoForm.addEventListener("submit", (e)=>{
-        e.preventDefault();
+    todoForm.addEventListener("submit", (event)=>{
+        event.preventDefault();
 
         let title = document.querySelector("#todo-title").value;
         let description = document.querySelector("#description").value;
@@ -145,5 +146,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
             // todoForm.style.display="none";
             hideTodoModal();
         }
+    });
+
+    projectForm.addEventListener("submit",(event)=>{
+        event.preventDefault();
+
+        let title = document.querySelector("#project-title").value;
+        createProject(title);
+        hideProjectModal();
     });
 });
