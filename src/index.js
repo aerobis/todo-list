@@ -2,9 +2,12 @@ import "./style.css";
 import {projectListMaker} from "./project-section.js";
 import {todoListMaker} from "./todo-section.js";
 import {addTodoToList} from "./todo-section.js";
+import {renderTodoList} from "./todo-section.js";
 import {updateTodoCard} from "./todo-maker.js";
 import {createProject} from "./projects.js";
 import {createDefaultProject} from "./projects.js";
+import {getActiveProject} from "./projects.js";
+import {setActiveProject} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
@@ -141,6 +144,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             editMode = false;
             editingCard = null;
         }else{
+              let activeProject = getActiveProject()
+              activeProject.todos.push(passedTodo);
             addTodoToList(passedTodo);
             // todoForm.reset();
             // todoForm.style.display="none";
@@ -154,5 +159,13 @@ document.addEventListener("DOMContentLoaded", ()=>{
         let title = document.querySelector("#project-title").value;
         createProject(title);
         hideProjectModal();
+    });
+
+    document.querySelector(".project-list").addEventListener("click", (event)=>{
+        if(event.target.matches(".project-card")){
+            let currentCard = event.target.closest(".project-card");
+            setActiveProject(currentCard);
+            renderTodoList();
+        }
     });
 });

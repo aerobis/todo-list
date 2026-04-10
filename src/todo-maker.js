@@ -1,3 +1,5 @@
+import {getActiveProject} from "./projects.js";
+
 export function createTodoCard(passedTodo){
     let card = document.createElement('div');
     card.classList.add("todo-card");

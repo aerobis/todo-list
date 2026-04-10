@@ -45,6 +45,9 @@ function displayProjects(){
         projectEditIcon.classList.add("fa-solid");
         projectEditIcon.classList.add("fa-ellipsis-vertical");
 
+        projectCard.dataset.title = projectTitle;
+        projectCard.dataset.id = projectId;
+
         projectEditButton.appendChild(projectEditIcon);
         projectCard.appendChild(projectCardTitle);
         projectCard.appendChild(projectEditButton);
@@ -52,8 +55,14 @@ function displayProjects(){
     }
 }
 
-export function setActiveProject(id){
-    activeProjectId = id;
+export function setActiveProject(card){
+    let cardId = card.dataset.id;
+    let projectsLength = projects.length;
+    for(let i=0; i<projectsLength; i++){
+        if(cardId == projects[i].id){
+            activeProjectId = projects[i].id;
+        }
+    }
 }
 
 export function getActiveProject(){
@@ -64,6 +73,8 @@ export function getActiveProject(){
         }
     }
 }
+
+
 
 
 

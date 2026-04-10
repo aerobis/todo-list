@@ -19,18 +19,17 @@ export function todoListMaker(container){
 
 export function addTodoToList(passedTodo){
     let todoSection = document.querySelector(".main-content");
-    let activeProject = getActiveProject();
-    activeProject.todos.push(passedTodo);
-
     let todo = createTodoCard(passedTodo);
-
     todoSection.appendChild(todo);
 }
 
 export function renderTodoList(){
+    let todoList = document.querySelector(".main-content");
     let activeProject = getActiveProject();
-    let totalTodos = activeProject.todos.legnth;
+    let totalTodos = activeProject.todos.length;
+    todoList.innerHTML="";
     for(let i=0; i<totalTodos; i++){
         addTodoToList(activeProject.todos[i]);
     }
+    console.log(activeProject.todos);
 }
