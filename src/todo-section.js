@@ -26,3 +26,11 @@ export function addTodoToList(passedTodo){
 
     todoSection.appendChild(todo);
 }
+
+export function renderTodoList(){
+    let activeProject = getActiveProject();
+    let totalTodos = activeProject.todos.legnth;
+    for(let i=0; i<totalTodos; i++){
+        addTodoToList(activeProject.todos[i]);
+    }
+}
