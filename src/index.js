@@ -8,11 +8,15 @@ import {createProject} from "./projects.js";
 import {createDefaultProject} from "./projects.js";
 import {getActiveProject} from "./projects.js";
 import {setActiveProject} from "./projects.js";
+import {setActiveProjectColor} from "./projects.js";
+import {removeActiveProjectColor} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
 let todoModalBackdrop = null;
 let projectModalBackdrop = null;
+
+let activeProjectCard = null;
 
 document.addEventListener("DOMContentLoaded", ()=>{
     let projectContainer = document.querySelector(".project-section");
@@ -28,7 +32,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     todoListMaker(todoContainer);
     createDefaultProject();
 
-    
+    let defaultCard = document.querySelector(".project-default");
+    setActiveProjectColor(defaultCard);
+    activeProjectCard = defaultCard;
+
     function showTodoModal(){
         todoModalBackdrop = document.createElement('div');
         todoModalBackdrop.className = 'modal-backdrop';
@@ -158,13 +165,20 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         let title = document.querySelector("#project-title").value;
         createProject(title);
+        activeProjectCard = document.querySelector(`.project-card[data-id="${getActiveProject().id}"]`);
+        setActiveProjectColor(activeProjectCard);
         hideProjectModal();
     });
 
     document.querySelector(".project-list").addEventListener("click", (event)=>{
         if(event.target.matches(".project-card")){
             let currentCard = event.target.closest(".project-card");
+            if(activeProjectCard){
+                removeActiveProjectColor(activeProjectCard);
+            }
+            setActiveProjectColor(currentCard);
             setActiveProject(currentCard);
+            activeProjectCard = currentCard;
             renderTodoList();
         }
     });

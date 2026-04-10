@@ -74,6 +74,13 @@ export function getActiveProject(){
     }
 }
 
+export function setActiveProjectColor(activeCard){
+    activeCard.classList.add('active-card');
+}
+
+export function removeActiveProjectColor(activeCard){
+    activeCard.classList.remove('active-card');
+}
 
 
 

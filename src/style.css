@@ -274,3 +274,7 @@ input, #description{
     justify-content: space-between;
     
 }
+
+.active-card{
+    background-color: var(--secondary-color);
+}
