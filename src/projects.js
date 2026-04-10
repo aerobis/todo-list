@@ -38,7 +38,16 @@ function displayProjects(){
         projectCardTitle.textContent = projectTitle;
         projectCard.classList.add(`project-${projectId}`);
 
+        let projectEditButton = document.createElement('div');
+        projectEditButton.classList.add("project-edit-button");
+
+        let projectEditIcon = document.createElement("i");
+        projectEditIcon.classList.add("fa-solid");
+        projectEditIcon.classList.add("fa-ellipsis-vertical");
+
+        projectEditButton.appendChild(projectEditIcon);
         projectCard.appendChild(projectCardTitle);
+        projectCard.appendChild(projectEditButton);
         container.appendChild(projectCard);
     }
 }

@@ -53,6 +53,10 @@ body {
     padding: var(--basic-padding);
 }
 
+.project-section-legend{
+    text-align: center;
+}
+
 
 /*TODO SECTION*/
 .todo-section{
@@ -262,4 +266,11 @@ input, #description{
 
 .project-card:hover{
     cursor: pointer;
+}
+
+.project-card{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    
 }
