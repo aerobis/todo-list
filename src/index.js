@@ -13,6 +13,7 @@ import {removeActiveProjectColor} from "./projects.js";
 import {getLatestProjectId} from "./projects.js";
 import {updateProjectCard} from "./projects.js";
 import {deleteProject} from "./projects.js";
+import {save, load} from "./projects.js"; //LOCALSTORAGE
 
 let editMode = false;
 let editingCard = null;
@@ -37,6 +38,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
     createDefaultProject();
+
+    load();
 
     let defaultCard = document.querySelector(".project-default");
     setActiveProjectColor(defaultCard);
@@ -194,6 +197,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                         activeProject.todos = activeProject.todos.filter(todo => todo.id !== currentCard.dataset.id); //Remake the array such that every element BUT the one with the id of the card is present
                     }
                 }
+                save();
             });
         }
     });
@@ -232,6 +236,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             // todoForm.style.display="none";
             hideTodoModal();
         }
+        save();
     });
 
     /*PROJECT FORM SUBMIT*/
@@ -258,6 +263,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             renderTodoList();
             hideProjectModal();
         }
+        save();
     });
 
     /*PROJECT LIST CLICK*/
@@ -272,6 +278,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             activeProjectCard = currentCard;
             renderTodoList();
         }
+        save();
     });
 
     /*PROJECT EDIT CLICK*/
@@ -304,6 +311,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                 showConfirm(()=>{
                     deleteProject(currentProject);
                     hideProjectModal();
+                    save();
                 })
             })
         }

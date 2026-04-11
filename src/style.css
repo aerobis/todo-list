@@ -301,6 +301,10 @@ input, #description{
     
 }
 
+.project-card * {
+    pointer-events: none; /*Bubble clicks to parent*/
+}
+
 .active-card{
     background-color: var(--secondary-color);
 }

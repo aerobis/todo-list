@@ -20,6 +20,7 @@ export function createProject(projectTitle){
         todos: []
     };
     projects.push(projectObject);
+    save();
     displayProjects();
 };
 
@@ -52,6 +53,7 @@ function displayProjects(){
         projectCard.appendChild(projectCardTitle);
         projectCard.appendChild(projectEditButton);
         container.appendChild(projectCard);
+        save();
     }
 }
 
@@ -116,9 +118,31 @@ export function deleteProject(card){
     displayProjects();
 }
 
+/*LOCAL STORAGE*/
+export function save(){
+    let state = {
+        projects: projects,
+        activeProjectId: activeProjectId
+    };
 
+    localStorage.setItem("todoApp", JSON.stringify(state));
+}
 
+export function load(){
+    let data = localStorage.getItem("todoApp");
 
+    if(!data){
+        return;
+    }
+
+    let parsedData = JSON.parse(data);
+
+    projects = parsedData.projects;
+    activeProjectId = parsedData.activeProjectId;
+
+    displayProjects();
+    let activeCard = document.querySelector(`.project-card[data-id="${activeProjectId}"]`);
+}
 
 
 
