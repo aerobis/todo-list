@@ -10,6 +10,7 @@ import {getActiveProject} from "./projects.js";
 import {setActiveProject} from "./projects.js";
 import {setActiveProjectColor} from "./projects.js";
 import {removeActiveProjectColor} from "./projects.js";
+import {getLatestProjectId} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
@@ -174,8 +175,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         let title = document.querySelector("#project-title").value;
         createProject(title);
-        activeProjectCard = document.querySelector(`.project-card[data-id="${getActiveProject().id}"]`);
+        // activeProjectCard = document.querySelector(`.project-card[data-id="${getActiveProject().id}"]`);
+        let latestProjectId = getLatestProjectId();
+        activeProjectCard = document.querySelector(`.project-card[data-id="${latestProjectId}"]`);
+        setActiveProject(activeProjectCard);
         setActiveProjectColor(activeProjectCard);
+        renderTodoList();
         hideProjectModal();
     });
 

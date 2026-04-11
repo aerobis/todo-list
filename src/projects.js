@@ -82,6 +82,12 @@ export function removeActiveProjectColor(activeCard){
     activeCard.classList.remove('active-card');
 }
 
+export function getLatestProjectId(){
+    let lastIndex = projects.length - 1;
+    let projectId = projects[lastIndex].id;
+    return projectId
+}
+
 
 
 
