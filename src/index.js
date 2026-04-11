@@ -11,6 +11,7 @@ import {setActiveProject} from "./projects.js";
 import {setActiveProjectColor} from "./projects.js";
 import {removeActiveProjectColor} from "./projects.js";
 import {getLatestProjectId} from "./projects.js";
+import {updateProjectCard} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
@@ -76,6 +77,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
             projectModalBackdrop = null;
             projectForm.reset();
             projectForm.style.display = 'none';
+            if(editMode){
+                document.querySelector(".project-delete-button").remove();
+            }
         }
     }
 
@@ -98,6 +102,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         hideProjectModal();
     })
 
+    /*TODO EDIT CLICK*/
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
         if(event.target.matches('.todo-edit-button')){
             editingCard = event.target.closest(".todo-card");
@@ -121,6 +126,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     });
 
+    /*TODO DELETE CLICK*/
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
         if(event.target.matches('.todo-delete-button')){
             let currentCard = event.target.closest(".todo-card");
@@ -135,6 +141,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     });
 
+    /*TODO FORM SUBMIT*/
     todoForm.addEventListener("submit", (event)=>{
         event.preventDefault();
 
@@ -170,20 +177,32 @@ document.addEventListener("DOMContentLoaded", ()=>{
         }
     });
 
+    /*PROJECT FORM SUBMIT*/
     projectForm.addEventListener("submit",(event)=>{
         event.preventDefault();
 
         let title = document.querySelector("#project-title").value;
-        createProject(title);
-        // activeProjectCard = document.querySelector(`.project-card[data-id="${getActiveProject().id}"]`);
-        let latestProjectId = getLatestProjectId();
-        activeProjectCard = document.querySelector(`.project-card[data-id="${latestProjectId}"]`);
-        setActiveProject(activeProjectCard);
-        setActiveProjectColor(activeProjectCard);
-        renderTodoList();
-        hideProjectModal();
+        if(editMode){
+            updateProjectCard(editingCard, title);
+            activeProjectCard = editingCard;
+            setActiveProject(activeProjectCard);
+            setActiveProjectColor(activeProjectCard);
+            renderTodoList();
+            hideProjectModal();
+            editMode = false;
+            editingCard = null;
+        }else{
+            createProject(title);
+            let latestProjectId = getLatestProjectId();
+            activeProjectCard = document.querySelector(`.project-card[data-id="${latestProjectId}"]`);
+            setActiveProject(activeProjectCard);
+            setActiveProjectColor(activeProjectCard);
+            renderTodoList();
+            hideProjectModal();
+        }
     });
 
+    /*PROJECT LIST CLICK*/
     document.querySelector(".project-list").addEventListener("click", (event)=>{
         if(event.target.matches(".project-card")){
             let currentCard = event.target.closest(".project-card");
@@ -194,6 +213,28 @@ document.addEventListener("DOMContentLoaded", ()=>{
             setActiveProject(currentCard);
             activeProjectCard = currentCard;
             renderTodoList();
+        }
+    });
+
+    /*PROJECT EDIT CLICK*/
+    document.querySelector(".project-list").addEventListener("click", (event)=>{
+        if(event.target.matches(".project-edit-button")){
+            editMode = true;
+            let currentProject = event.target.closest(".project-card");
+            editingCard = currentProject;
+
+            let projectForm = document.querySelector("#project-form");
+            let projectFormTitle = document.querySelector("#project-title");
+            let projectFormHeading = document.querySelector("#project-form-heading");
+            let deleteBtn = document.createElement('button');
+            deleteBtn.classList.add('project-delete-button');
+            deleteBtn.textContent = "DELETE";
+            projectForm.appendChild(deleteBtn);
+
+            projectFormHeading.textContent = "EDIT PROJECT";
+            projectFormTitle.value = currentProject.dataset.title;
+
+            showProjectModal();
         }
     });
 });

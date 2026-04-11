@@ -55,6 +55,17 @@ function displayProjects(){
     }
 }
 
+export function updateProjectCard(editingCard, passedTitle){
+    let projectsLength = projects.length;
+    let currentId = editingCard.dataset.id;
+    for(let i=0; i<projectsLength; i++){
+        if(currentId == projects[i].id){
+            projects[i].title = passedTitle;
+        }
+    }
+    displayProjects();
+};
+
 export function setActiveProject(card){
     let cardId = card.dataset.id;
     let projectsLength = projects.length;
@@ -85,7 +96,7 @@ export function removeActiveProjectColor(activeCard){
 export function getLatestProjectId(){
     let lastIndex = projects.length - 1;
     let projectId = projects[lastIndex].id;
-    return projectId
+    return projectId;
 }
 
 

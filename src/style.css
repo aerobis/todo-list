@@ -246,6 +246,21 @@ input, #description{
     transform: scale(1.1);
 }
 
+.project-edit-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+}
+
+.project-delete-button{
+    border-radius: 8px;
+    border: 0px;
+    padding: 8px;
+    width: 15vw;
+}
+
 
 .project-list{
     display: grid;
