@@ -254,11 +254,22 @@ input, #description{
     height: 100%;
 }
 
+.project-delete-button-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .project-delete-button{
     border-radius: 8px;
     border: 0px;
     padding: 8px;
     width: 15vw;
+}
+
+.project-delete-button:hover{
+    cursor: pointer;
+    background-color: rgb(234, 34, 34);
 }
 
 

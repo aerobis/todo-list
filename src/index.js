@@ -228,10 +228,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
             let projectForm = document.querySelector("#project-form");
             let projectFormTitle = document.querySelector("#project-title");
             let projectFormHeading = document.querySelector("#project-form-heading");
+            let deleteSection = document.createElement('div');
+            deleteSection.classList.add("project-delete-button-container");
+
             let deleteBtn = document.createElement('button');
             deleteBtn.classList.add('project-delete-button');
             deleteBtn.textContent = "DELETE";
-            projectForm.appendChild(deleteBtn);
+
+            deleteSection.appendChild(deleteBtn);
+            projectForm.appendChild(deleteSection);
 
             projectFormHeading.textContent = "EDIT PROJECT";
             projectFormTitle.value = currentProject.dataset.title;
