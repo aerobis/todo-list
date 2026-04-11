@@ -183,8 +183,9 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
         let title = document.querySelector("#project-title").value;
         if(editMode){
+            let activeProjectId = editingCard.dataset.id;
             updateProjectCard(editingCard, title);
-            activeProjectCard = editingCard;
+            let activeProjectCard = document.querySelector(`.project-card[data-id="${activeProjectId}"]`);
             setActiveProject(activeProjectCard);
             setActiveProjectColor(activeProjectCard);
             renderTodoList();

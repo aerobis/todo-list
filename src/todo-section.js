@@ -31,5 +31,4 @@ export function renderTodoList(){
     for(let i=0; i<totalTodos; i++){
         addTodoToList(activeProject.todos[i]);
     }
-    console.log(activeProject.todos);
 }
