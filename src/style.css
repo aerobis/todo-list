@@ -304,3 +304,47 @@ input, #description{
 .active-card{
     background-color: var(--secondary-color);
 }
+
+/*CONFIRM MODAL*/
+.confirm-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  z-index: 1001;
+  min-width: 300px;
+  text-align: center;
+}
+
+.confirm-modal.active {
+  display: block;
+}
+
+.confirm-modal .buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.confirm-btn {
+  padding: 0.5rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-yes {
+  background: #ef4444;
+  color: white;
+}
+
+.confirm-no {
+  background: #6b7280;
+  color: white;
+}

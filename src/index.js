@@ -17,9 +17,12 @@ import {deleteProject} from "./projects.js";
 let editMode = false;
 let editingCard = null;
 let todoModalBackdrop = null;
-let projectModalBackdrop = null;
+let projectModalBackdrop = null; 
 
 let activeProjectCard = null;
+
+let confirmModal = null;
+let onConfirmAction = null; 
 
 document.addEventListener("DOMContentLoaded", ()=>{
     let projectContainer = document.querySelector(".project-section");
@@ -81,6 +84,57 @@ document.addEventListener("DOMContentLoaded", ()=>{
             if(editMode){
                 document.querySelector(".project-delete-button").remove();
             }
+        }
+    }
+
+    function createConfirmModal(){
+        confirmModal = document.createElement('div');
+        confirmModal.className = 'confirm-modal';
+        confirmModal.innerHTML = `
+            <p id="confirm-message">Are you sure?</p>
+            <div class="confirm-modal-buttons">
+                <button class="confirm-btn confirm-yes" id="confirm-yes">Yes, Delete</button>
+                <button class="confirm-btn confirm-no" id="confirm-no">Cancel</button>
+            </div>
+        `;
+        document.body.appendChild(confirmModal);
+
+        let backdrop = document.createElement('div');
+        backdrop.className = 'modal-backdrop';
+        document.body.appendChild(backdrop);
+
+        //If yes
+        confirmModal.querySelector("#confirm-yes").onclick = () => {
+            if(onConfirmAction){
+                onConfirmAction();
+            }
+            onConfirmAction = null;
+            hideConfirm();
+            backdrop.remove();
+        }
+
+        confirmModal.querySelector("#confirm-no").onclick = () => {
+            hideConfirm();
+            backdrop.remove();
+        }
+        backdrop.onclick = hideConfirm;
+
+    }
+
+    function showConfirm(action, message = 'Are you sure?'){
+        if(!confirmModal){
+            createConfirmModal();
+        }
+
+        onConfirmAction = action;
+
+        document.getElementById('confirm-message').textContent = message;
+        confirmModal.classList.add('active');
+    }
+
+    function hideConfirm(){
+        if(confirmModal){
+            confirmModal.classList.remove('active');
         }
     }
 
@@ -245,8 +299,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
             /*PROJECT DELETE CLICK*/
             deleteBtn.addEventListener("click", (event)=>{
-                deleteProject(currentProject);
-                hideProjectModal();
+                showConfirm(()=>{
+                    deleteProject(currentProject);
+                    hideProjectModal();
+                })
             })
         }
     });
