@@ -37,13 +37,14 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
-    createDefaultProject();
-
-    load();
+    load(activeProjectCard);
 
     let defaultCard = document.querySelector(".project-default");
-    setActiveProjectColor(defaultCard);
-    activeProjectCard = defaultCard;
+    let totalCards = document.querySelector(".project-card");
+    if(totalCards.length === 1){ 
+        setActiveProjectColor(defaultCard);
+        activeProjectCard = defaultCard;
+    }
 
     function showTodoModal(){
         todoModalBackdrop = document.createElement('div');
@@ -270,6 +271,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
     document.querySelector(".project-list").addEventListener("click", (event)=>{
         if(event.target.matches(".project-card")){
             let currentCard = event.target.closest(".project-card");
+            let activeProjectId = getActiveProject().id;
+            activeProjectCard = document.querySelector(`.project-card[data-id="${activeProjectId}"]`);
             if(activeProjectCard){
                 removeActiveProjectColor(activeProjectCard);
             }
@@ -278,7 +281,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             activeProjectCard = currentCard;
             renderTodoList();
         }
-        save();
+        // save();
     });
 
     /*PROJECT EDIT CLICK*/

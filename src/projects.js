@@ -1,3 +1,5 @@
+import {renderTodoList} from "./todo-section.js";
+
 let projects=[];
 let activeProjectId = 'default';
 
@@ -128,7 +130,7 @@ export function save(){
     localStorage.setItem("todoApp", JSON.stringify(state));
 }
 
-export function load(){
+export function load(activeProjectCard){
     let data = localStorage.getItem("todoApp");
 
     if(!data){
@@ -142,6 +144,12 @@ export function load(){
 
     displayProjects();
     let activeCard = document.querySelector(`.project-card[data-id="${activeProjectId}"]`);
+    if(activeCard){
+        activeProjectCard = activeCard;
+        setActiveProjectColor(activeProjectCard);
+        setActiveProject(activeProjectCard);
+        renderTodoList();
+    }
 }
 
 
