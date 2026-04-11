@@ -69,9 +69,11 @@ export function updateProjectCard(editingCard, passedTitle){
 export function setActiveProject(card){
     let cardId = card.dataset.id;
     let projectsLength = projects.length;
-    for(let i=0; i<projectsLength; i++){
-        if(cardId == projects[i].id){
-            activeProjectId = projects[i].id;
+    if(projectsLength > 0){
+        for(let i=0; i<projectsLength; i++){
+            if(cardId == projects[i].id){
+                activeProjectId = projects[i].id;
+            }
         }
     }
 }
@@ -86,11 +88,15 @@ export function getActiveProject(){
 }
 
 export function setActiveProjectColor(activeCard){
-    activeCard.classList.add('active-card');
+    if(projects.length >= 1){
+        activeCard.classList.add('active-card');
+    }
 }
 
 export function removeActiveProjectColor(activeCard){
-    activeCard.classList.remove('active-card');
+    if(projects.length >= 1){
+        activeCard.classList.remove('active-card');
+    }
 }
 
 export function getLatestProjectId(){
@@ -99,6 +105,16 @@ export function getLatestProjectId(){
     return projectId;
 }
 
+export function deleteProject(card){
+    let projectsLength = projects.length;
+    let cardId = card.dataset.id;
+    for(let i=0; i<projectsLength; i++){
+        if(cardId == projects[i].id){
+            projects = projects.filter(project => project.id !== cardId);
+        }
+    }
+    displayProjects();
+}
 
 
 

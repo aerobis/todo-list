@@ -12,6 +12,7 @@ import {setActiveProjectColor} from "./projects.js";
 import {removeActiveProjectColor} from "./projects.js";
 import {getLatestProjectId} from "./projects.js";
 import {updateProjectCard} from "./projects.js";
+import {deleteProject} from "./projects.js";
 
 let editMode = false;
 let editingCard = null;
@@ -236,6 +237,12 @@ document.addEventListener("DOMContentLoaded", ()=>{
             projectFormTitle.value = currentProject.dataset.title;
 
             showProjectModal();
+
+            /*PROJECT DELETE CLICK*/
+            deleteBtn.addEventListener("click", (event)=>{
+                deleteProject(currentProject);
+                hideProjectModal();
+            })
         }
     });
 });
