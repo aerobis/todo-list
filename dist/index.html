@@ -1,0 +1,55 @@
+<head>
+    <script src="https://kit.fontawesome.com/e533d53c53.js" crossorigin="anonymous"></script>
+<script defer src="./main.js"></script></head>
+<div class="content-container">
+
+    <div class="project-section">
+        <div id="project-modal">
+            <form action="#" id="project-form">
+                <h2 id="project-form-heading">CREATE NEW PROJECT</h2>
+                <label for="project-title">Project Name</label>
+                <input type="text" name="title" id="project-title" required>
+                <div class="form-buttons">
+                    <button type="submit" id="project-submit-button">Save</button>
+                    <button type="button" id="project-cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <button id="new-project-button">Add Project</button>
+    </div>
+
+    <div class="todo-section">
+
+        <div id="todo-modal">
+            <form action="#" id="todo-form">
+                <h2 id="form-heading">CREATE NEW TODO</h2>
+                <label for="todo-title">Title</label>
+                <input type="text" name="title" id="todo-title" required>
+                <label for="description">Description</label>
+                <textarea name="description" id="description"></textarea>
+                <label for="due-date">Due Date</label>
+                <input type="date" name="due-date" id="due-date" required>
+                <label for="priority">Priority: 
+                    <select name="priority" id="priority">
+                        <option>Urgent</option>
+                        <option>High</option>
+                        <option>Normal</option>
+                        <option>Low</option>
+                    </select>
+                </label>
+                <label for="status">Status: 
+                    <select name="status" id="status">
+                        <option>Incomplete</option>
+                        <option>Progressed</option>
+                        <option>Completed</option>
+                    </select>
+                </label>
+                <div class="form-buttons">
+                    <button type="submit" id="todo-submit-button">Save</button>
+                    <button type="button" id="todo-cancel-button">Cancel</button>
+                </div>
+            </form>
+        </div>
+        <button id="new-todo-button">New Todo</button>
+    </div>
+</div>
