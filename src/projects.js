@@ -92,15 +92,11 @@ export function getActiveProject(){
 }
 
 export function setActiveProjectColor(activeCard){
-    if(projects.length >= 1){
-        activeCard.classList.add('active-card');
-    }
+    activeCard.classList.add('active-card');
 }
 
 export function removeActiveProjectColor(activeCard){
-    if(projects.length >= 1){
-        activeCard.classList.remove('active-card');
-    }
+    activeCard.classList.remove('active-card');
 }
 
 export function getLatestProjectId(){

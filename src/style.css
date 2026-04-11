@@ -301,7 +301,7 @@ input, #description{
     
 }
 
-.project-card * {
+.project-card *:not(.project-edit-button){
     pointer-events: none; /*Bubble clicks to parent*/
 }
 

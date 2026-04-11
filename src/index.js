@@ -37,15 +37,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     projectListMaker(projectContainer);
     todoListMaker(todoContainer);
-    load(activeProjectCard);
+    load();
 
     let defaultCard = document.querySelector(".project-default");
-    let totalCards = document.querySelector(".project-card");
-    if(totalCards.length === 1){ 
+    let totalCards = document.querySelectorAll(".project-card");
+    if(totalCards.length === 0){ 
+        createDefaultProject();
+    }
+    if(totalCards.length === 1){
         setActiveProjectColor(defaultCard);
         activeProjectCard = defaultCard;
     }
-
+    
     function showTodoModal(){
         todoModalBackdrop = document.createElement('div');
         todoModalBackdrop.className = 'modal-backdrop';
@@ -229,6 +232,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             hideTodoModal();
             editMode = false;
             editingCard = null;
+            save();
         }else{
               let activeProject = getActiveProject()
               activeProject.todos.push(passedTodo);
@@ -236,8 +240,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             // todoForm.reset();
             // todoForm.style.display="none";
             hideTodoModal();
+            save();
         }
-        save();
     });
 
     /*PROJECT FORM SUBMIT*/
@@ -255,6 +259,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             hideProjectModal();
             editMode = false;
             editingCard = null;
+            save();
         }else{
             createProject(title);
             let latestProjectId = getLatestProjectId();
@@ -263,8 +268,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
             setActiveProjectColor(activeProjectCard);
             renderTodoList();
             hideProjectModal();
+            save();
         }
-        save();
     });
 
     /*PROJECT LIST CLICK*/
@@ -281,7 +286,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             activeProjectCard = currentCard;
             renderTodoList();
         }
-        // save();
+        save();
     });
 
     /*PROJECT EDIT CLICK*/
