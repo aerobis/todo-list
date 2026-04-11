@@ -118,7 +118,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             backdrop.remove();
         }
         backdrop.onclick = hideConfirm;
-
+        backdrop.remove();
     }
 
     function showConfirm(action, message = 'Are you sure?'){
@@ -184,15 +184,17 @@ document.addEventListener("DOMContentLoaded", ()=>{
     /*TODO DELETE CLICK*/
     document.querySelector(".todo-section").addEventListener("click", (event)=>{
         if(event.target.matches('.todo-delete-button')){
-            let currentCard = event.target.closest(".todo-card");
-            currentCard.remove();
-            let activeProject = getActiveProject();
-            let todoLength = activeProject.todos.length;
-            for(let i=0; i<todoLength; i++){
-                if(currentCard.dataset.id == activeProject.todos[i].id){
-                    activeProject.todos = activeProject.todos.filter(todo => todo.id !== currentCard.dataset.id); //Remake the array such that every element BUT the one with the id of the card is present
+            showConfirm(()=>{
+                let currentCard = event.target.closest(".todo-card");
+                currentCard.remove();
+                let activeProject = getActiveProject();
+                let todoLength = activeProject.todos.length;
+                for(let i=0; i<todoLength; i++){
+                    if(currentCard.dataset.id == activeProject.todos[i].id){
+                        activeProject.todos = activeProject.todos.filter(todo => todo.id !== currentCard.dataset.id); //Remake the array such that every element BUT the one with the id of the card is present
+                    }
                 }
-            }
+            });
         }
     });
 
